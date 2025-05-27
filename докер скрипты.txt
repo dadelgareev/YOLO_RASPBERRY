@@ -1,0 +1,6 @@
+# скрипт для создания докер образа со всеми логами
+docker build --progress=plain -t yolo8vn_raspberry .
+# скрипт для сохранения образа в формате .tar
+docker save -o  yolo8vn_raspberry.tar yolo8vn_raspberry 
+# скрипт для запуска контейнера по описанию из docker-compose
+docker compose up -d
