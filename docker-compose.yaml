@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  yolo8vn_raspberry:
+    container_name: yolo8vn_raspberry_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
