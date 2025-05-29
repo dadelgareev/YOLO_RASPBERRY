@@ -9,6 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+tracked_objects = {}
 
 model = YOLO('yolov8n.pt')
 cap = cv2.VideoCapture('run_human.mp4')
@@ -51,9 +52,11 @@ while cap.isOpened():
     processing_time = end_time - start_time
     logger.info(f'Frame processed in {processing_time:.4f} seconds')
     cv2.imshow('Norfair Tracking', frame)
+
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
 cap.release()
 logger.info('Video capture ended.')
 cv2.destroyAllWindows()
+print(tracked_objects)
