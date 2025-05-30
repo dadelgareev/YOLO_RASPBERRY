@@ -1,0 +1,15 @@
+INFO:deep_sort_realtime.embedder.embedder_pytorch:MobileNetV2 Embedder for Deep Sort initialised
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- gpu enabled: False
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- half precision: False
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- max batch size: 16
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- expects BGR: True
+INFO:deep_sort_realtime.deepsort_tracker:DeepSort Tracker initialised
+INFO:deep_sort_realtime.deepsort_tracker:- max age: 150
+INFO:deep_sort_realtime.deepsort_tracker:- appearance threshold: 0.6
+INFO:deep_sort_realtime.deepsort_tracker:- nms threshold: OFF
+INFO:deep_sort_realtime.deepsort_tracker:- max num of appearance features: 100
+INFO:deep_sort_realtime.deepsort_tracker:- overriding track class : No
+INFO:deep_sort_realtime.deepsort_tracker:- today given : No
+INFO:deep_sort_realtime.deepsort_tracker:- in-build embedder : Yes
+INFO:deep_sort_realtime.deepsort_tracker:- polygon detections : No
+ERROR:__main__:Не удалось открыть видеопоток с камеры

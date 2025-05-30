@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  yolo8vn_raspberry:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: yolo8vn_raspberry:latest
+    container_name: yolo8vn_raspberry_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    devices:
+      - /dev/video0:/dev/video0
+    restart: unless-stopped

@@ -96,8 +96,7 @@ while cap.isOpened():
     if frame_count % 30 == 0:
         logger.info(f'Frame {frame_count} processed in {processing_time:.4f} seconds')
 
-    # Отображение кадра
-    cv2.imshow('DeepSORT Tracking', frame)
+    cv2.save
 
     # Выход по нажатию 'q' или закрытию окна
     key = cv2.waitKey(1) & 0xFF
