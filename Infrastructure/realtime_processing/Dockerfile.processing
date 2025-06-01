@@ -1,0 +1,10 @@
+FROM python:3.12-slim-bullseye
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем скрипт
+COPY processing.py .
+
+# Команда для запуска
+CMD ["python", "processing.py"]

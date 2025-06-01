@@ -1,0 +1,37 @@
+services:
+  yolo8vn_processing:
+    build:
+      context: ./realtime_processing
+      dockerfile: Dockerfile.processing
+    image: yolo8vn_processing:latest
+    container_name: yolo8vn_processing_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./realtime_processing:/app
+    ports:
+      - "65432:65432"
+    networks:
+      - yolo_network
+    stop_signal: SIGINT
+    restart: unless-stopped
+  yolo8vn_tracking:
+    build:
+      context: ./realtime_win_camera_usb_test
+      dockerfile: Dockerfile.tracker
+    image: yolo8vn_tracker:latest
+    container_name: yolo8vn_tracker_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./realtime_win_camera_usb_test:/app
+    depends_on:
+      - yolo8vn_processing
+    networks:
+      - yolo_network
+    stop_signal: SIGINT
+    restart: unless-stopped
+
+networks:
+  yolo_network:
+    driver: bridge

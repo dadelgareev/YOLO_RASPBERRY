@@ -1,0 +1,44 @@
+INFO:deep_sort_realtime.embedder.embedder_pytorch:MobileNetV2 Embedder for Deep Sort initialised
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- gpu enabled: False
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- half precision: False
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- max batch size: 16
+INFO:deep_sort_realtime.embedder.embedder_pytorch:- expects BGR: True
+INFO:deep_sort_realtime.deepsort_tracker:DeepSort Tracker initialised
+INFO:deep_sort_realtime.deepsort_tracker:- max age: 150
+INFO:deep_sort_realtime.deepsort_tracker:- appearance threshold: 0.6
+INFO:deep_sort_realtime.deepsort_tracker:- nms threshold: OFF
+INFO:deep_sort_realtime.deepsort_tracker:- max num of appearance features: 100
+INFO:deep_sort_realtime.deepsort_tracker:- overriding track class : No
+INFO:deep_sort_realtime.deepsort_tracker:- today given : No
+INFO:deep_sort_realtime.deepsort_tracker:- in-build embedder : Yes
+INFO:deep_sort_realtime.deepsort_tracker:- polygon detections : No
+INFO:__main__:Обработка видеопотока началась.
+INFO:__main__:Получен сигнал остановки (Ctrl+C), завершаем работу...
+INFO:__main__:Обработка видеопотока завершена.
+INFO:__main__:=== Статистика трекинга ===
+INFO:__main__:Track ID: 1
+INFO:__main__:  - Кадров с объектом: 168
+INFO:__main__:  - Первое появление: кадр 3
+INFO:__main__:  - Последнее появление: кадр 229
+INFO:__main__:  - Продолжительность: 227 кадров
+INFO:__main__:  - Последний BBox: (6, 421, 81, 605)
+INFO:__main__:  - Последний центр: (43.5, 513.0)
+INFO:__main__:---
+INFO:__main__:Track ID: 3
+INFO:__main__:  - Кадров с объектом: 49
+INFO:__main__:  - Первое появление: кадр 181
+INFO:__main__:  - Последнее появление: кадр 229
+INFO:__main__:  - Продолжительность: 49 кадров
+INFO:__main__:  - Последний BBox: (4, 429, 92, 615)
+INFO:__main__:  - Последний центр: (48.0, 522.0)
+INFO:__main__:---
+INFO:__main__:Track ID: 4
+INFO:__main__:  - Кадров с объектом: 6
+INFO:__main__:  - Первое появление: кадр 251
+INFO:__main__:  - Последнее появление: кадр 256
+INFO:__main__:  - Продолжительность: 6 кадров
+INFO:__main__:  - Последний BBox: (453, 438, 599, 704)
+INFO:__main__:  - Последний центр: (526.0, 571.0)
+INFO:__main__:---
+INFO:__main__:Всего обработано кадров: 256
+INFO:__main__:Всего уникальных объектов: 3
