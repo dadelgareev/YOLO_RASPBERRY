@@ -1,0 +1,13 @@
+services:
+  camera_test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: camera_usb_image
+    container_name: camera_usb_container
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./output_docker_app:/app
+    stop_signal: SIGINT
+    restart: unless-stopped
