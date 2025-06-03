@@ -38,7 +38,7 @@ tracker = DeepSort(
 )
 
 # Захват видео с веб-камеры (0 - это индекс камеры по умолчанию)
-cap = cv2.VideoCapture('run_human.mp4')
+cap = cv2.VideoCapture('/dev/video0')
 
 if not cap.isOpened():
     logger.error("Не удалось открыть веб-камеру")
@@ -151,7 +151,6 @@ while cap.isOpened() and running:
 
 cap.release()
 out.release()
-cv2.destroyAllWindows()
 logger.info('Обработка видеопотока завершена.')
 
 # Логирование статистики
