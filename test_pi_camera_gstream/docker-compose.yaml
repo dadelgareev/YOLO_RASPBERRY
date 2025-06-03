@@ -1,5 +1,5 @@
 services:
-  pi_camera_test:
+  camera:
     build:
       context: .
       dockerfile: Dockerfile
@@ -8,8 +8,9 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
     volumes:
-      - .:/app
+      - ./output_docker_app:/app/output
     devices:
-      - /dev/video0:/dev/video0
+      - /dev/video2:/dev/video2
     stop_signal: SIGINT
+    stop_grace_period: 30s
     restart: unless-stopped
