@@ -25,6 +25,8 @@ services:
       - PYTHONUNBUFFERED=1
     volumes:
       - ./realtime_win_camera_usb_test:/app
+    devices:
+      - /dev/video0:/dev/video0
     depends_on:
       - yolo8vn_processing
     networks:

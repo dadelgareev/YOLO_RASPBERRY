@@ -8,6 +8,8 @@ from deep_sort_realtime.deepsort_tracker import DeepSort
 import signal
 import sys
 import socket
+from PIL import Image
+import os
 
 HOST = 'yolo8vn_processing'  # Имя докер сервиса процессинга
 PORT = 65432        # Порт сервера
@@ -31,7 +33,7 @@ model = YOLO('yolov8n.pt')
 # Инициализация трекера DeepSort
 tracker = DeepSort(
     max_age=150,
-    n_init=3,
+    n_init=1,
     nn_budget=100,
     max_cosine_distance=0.6,
     max_iou_distance=1.0,
@@ -39,7 +41,7 @@ tracker = DeepSort(
 
 # Захват видео с веб-камеры (0 - это индекс камеры по умолчанию)
 cap = cv2.VideoCapture('/dev/video0')
-
+cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
 if not cap.isOpened():
     logger.error("Не удалось открыть веб-камеру")
     print("Ошибка: Не удалось открыть веб-камеру")
@@ -51,10 +53,16 @@ logger.info('Обработка видеопотока началась.')
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 print(f"Расширение кадра: {frame_width}x{frame_height}")
-out = cv2.VideoWriter('output.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 30, (frame_width, frame_height))
+# out = cv2.VideoWriter('output.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 30, (frame_width, frame_height))
 
 tracked_objects_history = {}
 frame_count = 0
+
+current_dir = os.getcwd()
+files = [f for f in os.listdir(current_dir) if os.path.isfile(os.path.join(current_dir, f))]
+for file in files:
+    if file.endswith(".jpg"):
+        os.remove(file)
 
 while cap.isOpened() and running:
     start_time = time.time()
@@ -77,7 +85,7 @@ while cap.isOpened() and running:
             cls = int(det.cls.cpu().numpy()[0])
 
             # Фильтрация только людей (класс 0 в COCO) с высокой уверенностью
-            if cls == 0 and conf > 0.7:
+            if cls == 0 and conf > 0.5:
                 w, h = x2 - x1, y2 - y1
                 detections.append(([x1, y1, w, h], conf, cls))
 
@@ -91,8 +99,8 @@ while cap.isOpened() and running:
 
     # Обработка треков
     for track in tracks:
-        if not track.is_confirmed():
-            continue
+        #if not track.is_confirmed():
+            #continue
 
         track_id = track.track_id
         bbox = track.to_tlbr()  # [x1, y1, x2, y2]
@@ -133,7 +141,11 @@ while cap.isOpened() and running:
         print("Ошибка соединения:", e)
 
     # Запись кадра в выходное видео
-    out.write(frame)
+    # out.write(frame)
+
+    frame_reshaped = frame.reshape((768, 1024, 3))
+    im = Image.fromarray(frame_reshaped)
+    im.save(f"{frame_count}.jpg")
 
     """Закомментарен т.к. в докере без граф. интерфейса крашнется
     # Отображение кадра в окне
@@ -150,7 +162,7 @@ while cap.isOpened() and running:
     """
 
 cap.release()
-out.release()
+# out.release()
 logger.info('Обработка видеопотока завершена.')
 
 # Логирование статистики
